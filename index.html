@@ -962,6 +962,92 @@
   background: #ff9c00;
 }
 
+.tv-maintenance {
+  padding: 60px 20px;
+  font-family: 'Tajawal', sans-serif;
+  background: #f9f9f9; /* neutral clean bg */
+}
+
+.tv-maintenance .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tv-maintenance-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.tv-maintenance-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.tv-maintenance-text {
+  flex: 1 1 500px;
+}
+
+.tv-maintenance-text h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.tv-maintenance-text p {
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.tv-maintenance-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  font-size: 16px;
+}
+
+.btn-call {
+  background: #007bff;
+  color: #fff;
+}
+
+.btn-call:hover {
+  background: #0056b3;
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+.btn-whatsapp:hover {
+  background: #1ea955;
+}
+
+@media (max-width: 768px) {
+  .tv-maintenance-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .tv-maintenance-actions {
+    justify-content: center;
+  }
+}
+
     </style>
 </head>
 <body>
@@ -1128,6 +1214,41 @@
         </div>
     </section>
 
+    <section class="tv-maintenance" id="tv-maintenance">
+  <div class="container">
+    <div class="tv-maintenance-content">
+      <!-- Image Section -->
+      <div class="tv-maintenance-image">
+        <img src="/tv.png" alt="TV Maintenance">
+      </div>
+
+      <!-- Text Section -->
+      <div class="tv-maintenance-text">
+        <h2>صيانة شاشات التلفزيون المعتمدة</h2>
+        <p>
+          نوفر خدمة صيانة فورية لجميع أنواع شاشات التلفزيون
+          <strong>LED – LCD – QLED – OLED – 4K</strong>، من خلال فريق فني
+          متخصص ومدرب على أعلى مستوى لتقديم خدمة سريعة ومضمونة.
+        </p>
+        <p>
+          نستخدم قطع غيار أصلية مع ضمان معتمد، ونوفر خدمة الإصلاح في المنزل
+          في نفس اليوم. صيانة لجميع الماركات اليابانية والكورية والصينية
+          وغيرها.
+        </p>
+        <p>
+          احجز موعدك الآن عبر الاتصال أو الواتساب، وسيتم إرسال أقرب فني لك فورًا.
+        </p>
+
+        <div class="tv-maintenance-actions">
+          <a href="tel:+201031242450" class="btn btn-call">📞 اتصل الآن</a>
+          <a href="https://wa.me/201031242450" target="_blank" class="btn btn-whatsapp">💬 واتساب</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
     <section class="services-section" id="services">
   <div class="container">
     <h2 class="section-title">الخدمات المقدمة</h2>
@@ -1241,6 +1362,16 @@
                     <h3>الهاتف</h3>
                     <a href="tel:+201031242450">+20 10 31242450</a>
                 </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>الهاتف 2</h3>
+                    <a href="tel:+201031242450">+20 10 34045959</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>الهاتف 3</h3>
+                    <a href="tel:+201031242450">+20 10 34046767</a>
+                </div>
 
                 <div class="contact-card">
                     <div class="contact-icon">💬</div>
@@ -1331,7 +1462,7 @@
 
   <!-- الشريط السفلي -->
   <div class="footer-bottom">
-    <p>© 2025 - 16807</p>
+    <p>© 2025</p>
     <div class="social">
       <a href="#"><i class="icon-facebook"></i></a>
       <a href="#"><i class="icon-instagram"></i></a>
