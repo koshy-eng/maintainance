@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوكيل المعتمد للصيانه - الموقع الرسمي للدعم الفني</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.sticky {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-wrapper {
+            width: 100%;
+        }
+
+        .header-main {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            gap: 20px;
+        }
+
+        /* Logo Styles */
+        #logo {
+            flex: 0 0 auto;
+        }
+
+        #logo a {
+            display: block;
+        }
+
+        .header_logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Navigation Styles */
+        .header-nav {
+            list-style: none;
+            display: flex;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .header-nav li {
+            list-style: none;
+        }
+
+        .nav-top-link {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .nav-top-link:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Header Buttons */
+        .header-button a {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 99px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid;
+        }
+
+        .button.primary {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .button.primary:hover {
+            background: #5568d3;
+            border-color: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .button.secondary {
+            background: #764ba2;
+            color: white;
+            border-color: #764ba2;
+        }
+
+        .button.secondary:hover {
+            background: #643a8a;
+            border-color: #643a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
+        }
+
+        /* Desktop Navigation */
+        .flex-left {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .flex-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hide-for-medium {
+            display: flex;
+        }
+
+        .show-for-medium {
+            display: none;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .icon.button {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .icon.button:hover {
+            background: #5568d3;
+            transform: scale(1.1);
+        }
+
+        /* Mobile Bottom Nav */
+        .header-bottom {
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .header-bottom .nav {
+            justify-content: center;
+        }
+
+        /* Mobile Menu Overlay */
+        #main-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        #main-menu.active {
+            right: 0;
+        }
+
+        #main-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 9998;
+        }
+
+        #main-menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .mobile-menu-close {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu-nav li {
+            margin-bottom: 10px;
+        }
+
+        .mobile-menu-nav a {
+            display: block;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-nav a:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 849px) {
+            .hide-for-medium {
+                display: none !important;
+            }
+
+            .show-for-medium {
+                display: flex !important;
+            }
+
+            .header-inner {
+                padding: 10px 15px;
+            }
+
+            .header_logo {
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header_logo {
+                height: 40px;
+            }
+
+            .header-button a {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            background-color: #edac09;
+            padding: 60px 0 80px;
+            position: relative;
+        }
+
+        .hero-section .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .row.align-middle {
+            align-items: center;
+        }
+
+        .col {
+            width: 100%;
+        }
+
+        .text-col {
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2em;
+            color: #231f20;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .warning-text {
+            font-size: 1.8em;
+            color: #800000;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #231f20;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .button-hotline {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .button-hotline:hover {
+            background: #c82333;
+            box-shadow: 0 6px 25px rgba(220, 53, 69, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .image-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .image-box:hover {
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+        }
+
+        /* About Section with Arrow Mask */
+        .about-section {
+            background-color: white;
+            padding: 80px 0;
+            position: relative;
+            margin-top: -30px;
+            clip-path: polygon(0px 0px, calc(50% - 30px) 0px, 50% 30px, calc(50% + 30px) 0px, 100% 0px, 100% 100%, 0px 100%);
+        }
+
+        .about-section .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: #231f20;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .about-description {
+            font-size: 1.3em;
+            line-height: 1.9;
+            color: #231f20;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        /* Responsive for Sections */
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-section {
+                padding: 40px 0 60px;
+            }
+
+            .about-section {
+                padding: 60px 0;
+            }
+
+            .hero-title {
+                font-size: 1.6em;
+            }
+
+            .warning-text {
+                font-size: 1.4em;
+            }
+
+            .section-title {
+                font-size: 1.7em;
+            }
+
+            .hero-description,
+            .about-description {
+                font-size: 1em;
+            }
+
+            .button-hotline {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .contact-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .contact-title {
+            font-size: 2.2em;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .contact-card h3 {
+            color: white;
+            font-size: 1.5em;
+            margin: 15px 0;
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: block;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+          
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+
+        .services-section {
+  background-color: rgb(237, 172, 9);
+  padding: 40px 20px;
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+}
+
+.section-title {
+  text-align: center;
+  color: #231f20;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: #231f20;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.service-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #c8102e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.service-btn:hover {
+  background-color: #a30c24;
+}
+
+
+
+
+.testimonials-section {
+  background: #fff;
+  padding: 50px 20px;
+  direction: rtl;
+  font-family: "Cairo", sans-serif;
+}
+
+.testimonials-title {
+  text-align: center;
+  color: rgb(27, 43, 79);
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.testimonial-card {
+  background-color: rgb(237, 172, 9);
+  color: #fff;
+  padding: 25px 20px;
+  border-radius: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-text p {
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.testimonial-meta {
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.testimonial-meta span {
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+
+
+
+
+.site-footer {
+  background: rgb(237, 172, 9);
+  color: #231f20;
+  font-family: "Cairo", sans-serif;
+  direction: rtl;
+}
+
+.footer-wave svg {
+  width: 100%;
+  height: 120px;
+  display: block;
+  fill: #fff;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  text-align: right;
+}
+
+.footer-logo img {
+  max-width: 160px;
+  margin-bottom: 15px;
+}
+.footer-logo p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.phone-btn {
+  display: inline-block;
+  background: #231f20;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 25px;
+  text-decoration: none;
+}
+.phone-btn i {
+  margin-left: 5px;
+}
+
+.footer-links h5,
+.footer-text h5,
+.footer-cities h5 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+.footer-links ul,
+.footer-cities ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-links ul li,
+.footer-cities ul li {
+  margin-bottom: 8px;
+}
+.footer-links ul li a {
+  color: #231f20;
+  text-decoration: none;
+}
+.footer-links ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-text p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-map iframe {
+  display: block;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px;
+  background: #231f20;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.footer-bottom .social a {
+  color: #fff;
+  margin: 0 5px;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+.footer-bottom .footer-policies a {
+  color: #fff;
+  margin: 0 5px;
+  text-decoration: none;
+}
+.footer-bottom .footer-policies a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.wave-divider {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wave-divider .ux-shape-fill {
+  fill: var(--primary-color, #ffffff); /* اللون الأساسي */
+}
+
+/* Floating Button Container */
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+/* Main FAB */
+.fab-main {
+  width: 60px;
+  height: 60px;
+  background: #fec555;
+  color: #fff;
+  font-size: 30px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fab-main:hover {
+  transform: scale(1.1);
+}
+
+/* Hidden buttons container */
+.fab-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+/* Each small FAB */
+.fab-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  text-decoration: none;
+  font-size: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.call-btn {
+  background-color: #03e78b;
+}
+
+.whatsapp-btn {
+  background-color: #25d366;
+}
+
+/* Active State */
+.fab-container.active .fab-buttons {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.fab-container.active .fab-main {
+  transform: rotate(45deg);
+  background: #ff9c00;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-wrapper">
+            <div class="header-main">
+                <div class="header-inner">
+                    <!-- Logo -->
+                    <div id="logo" class="flex-col logo">
+                        <a href="#" title="الوكيل المعتمد للصيانه">
+                            <img src="/logo.png" class="header_logo" alt="الوكيل المعتمد للصيانه">
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="flex-col show-for-medium flex-left">
+                        <ul class="mobile-nav nav nav-left">
+                            <li class="nav-icon">
+                                <div class="header-button">
+                                    <a href="#" class="icon primary button circle" aria-label="القائمة" id="mobile-menu-btn">
+                                        <span>☰</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <div class="flex-col hide-for-medium flex-left">
+                        <ul class="header-nav header-nav-main nav nav-left">
+                            <li><a href="#refrigerators" class="nav-top-link">صيانة الثلاجات</a></li>
+                            <li><a href="#microwaves" class="nav-top-link">صيانة الميكروويف</a></li>
+                            <li><a href="#freezers" class="nav-top-link">صيانة ديب فريزر</a></li>
+                            <li><a href="#dishwashers" class="nav-top-link">صيانة غسالات الأطباق</a></li>
+                            <li><a href="#washers" class="nav-top-link">صيانة غسالات الملابس</a></li>
+                            <li><a href="#dryers" class="nav-top-link">صيانة مجفف الملابس</a></li>
+                            <li><a href="#contact" class="nav-top-link">تواصل معنا</a></li>
+                            <li><a href="#about" class="nav-top-link">نبذه عنا</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Desktop Right Buttons -->
+                    <div class="flex-col hide-for-medium flex-right">
+                        <ul class="header-nav header-nav-main nav nav-right">
+                            <li class="html header-button-2">
+                                <div class="header-button">
+                                    <a href="tel:+201031242450" class="button secondary">
+                                        <span>01031242450</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="html header-button-1">
+                                <div class="header-button">
+                                    <a href="https://wa.me/message/7K7TH3BGR4F4B1" class="button primary">
+                                        <span>واتساب</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mobile Right Elements -->
+                    <div class="flex-col show-for-medium flex-right">
+                        <ul class="mobile-nav nav nav-right"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Bottom Navigation -->
+            <div class="header-bottom wide-nav show-for-medium">
+                <div class="flex-row container">
+                    <div class="flex-col flex-grow">
+                        <ul class="nav header-bottom-nav nav-center mobile-nav">
+                            <li class="html header-button-2">
+                                <div class="header-button">
+                                    <a href="tel:+201031242450" class="button secondary">
+                                        <span>01031242450</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="html header-button-1">
+                                <div class="header-button">
+                                    <a href="https://wa.me/message/7K7TH3BGR4F4B1" class="button primary">
+                                        <span>واتساب</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="main-menu-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div id="main-menu">
+        <div class="mobile-menu-header">
+            <h3>القائمة</h3>
+            <button class="mobile-menu-close" id="mobile-menu-close">×</button>
+        </div>
+        <ul class="mobile-menu-nav">
+            <li><a href="#refrigerators">صيانة الثلاجات</a></li>
+            <li><a href="#microwaves">صيانة الميكروويف</a></li>
+            <li><a href="#freezers">صيانة ديب فريزر</a></li>
+            <li><a href="#dishwashers">صيانة غسالات الأطباق</a></li>
+            <li><a href="#washers">صيانة غسالات الملابس</a></li>
+            <li><a href="#dryers">صيانة مجفف الملابس</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+            <li><a href="#about">نبذه عنا</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <!-- Hero Section with Background Color -->
+    <section class="hero-section" id="section_hero">
+        <div class="section-content">
+            <div class="container">
+                <div class="row align-middle">
+                    <div class="col text-col">
+                        <h2 class="hero-title">الموقع الرسمي للدعم الفني و العناية بالعملاء</h2>
+                        <h2 class="warning-text">الشركة غير مسئولة عن الصيانة خارج فروعها</h2>
+                        <p class="hero-description">
+                            يتم تقديم خدمات واستشارات فنية وزيارات منزلية وإصلاح في المنزل في زمن قياسي لا يتجاوز 24 ساعة من خلال قسم الصيانة والأعطال المتميز والمؤهل لإنجاز وحل المشكلة في أسرع وقت ممكن. وهذه الخدمة مخصصة فقط للعملاء الذين يواجهون مشكلة في أجهزتهم والتي تمثل جزءًا أساسيًا من حياتهم اليومية ولا يمكنهم الانتظار طويلًا أو لا يثقون في الإصلاحات الخارجية.
+                        </p>
+                        <p class="hero-description">
+                            لذلك ننوّه إلى العملاء الموقرين أن أفضل وأسرع الحلول المضمونة تكون من خلالنا، ونقدّر وقت عملائنا وثقتهم الغالية.
+                        </p>
+                        <a href="tel:+201031242450" class="button-hotline">
+                            الخط الساخن 01031242450
+                        </a>
+                    </div>
+                    <div class="col image-col">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&h=600&fit=crop" alt="صيانة أجهزة منزلية">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Arrow Mask -->
+    <section class="about-section mask-arrow" id="section_about">
+        <div class="section-content">
+            <div class="container">
+                <h2 class="section-title">أفضل خدمات إصلاح الأجهزة في مصر – خبرة 30 عام</h2>
+                <div class="row align-middle">
+                    <div class="col image-col">
+                        <div class="image-box">
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&h=700&fit=crop" alt="من نحن">
+                        </div>
+                    </div>
+                    <div class="col text-col">
+                        <p class="about-description">
+                            تواصل مع فريق صيانة الأجهزة للحصول على أفضل خدمات الإصلاح في مصر. يتمتع خبراؤنا بأكثر من 30 عام من الخبرة في تشخيص وإصلاح الثلاجات والغسالات والأفران وغيرها. في حال توقف جهازك عن العمل، اتصل بنا على الفور، وسيتولى فنيو الصيانة المتخصصون تقييم المشكلة بدقة وإجراء الإصلاحات باستخدام قطع غيار أصلية، لضمان عودة جهازك إلى العمل بسرعة وبكفاءة.
+                        </p>
+                        <a href="tel:+201031242450" class="button-hotline">
+                            الخط الساخن 01031242450
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+  <div class="container">
+    <h2 class="section-title">الخدمات المقدمة</h2>
+    <div class="services-grid">
+
+      <!-- Card 1 -->
+      <div class="service-card">
+        <img src="https://seyanacenter.soopec.org/wp-content/uploads/2024/10/صيانة-ثلاجات.png" alt="صيانة ثلاجات">
+        <h3>قسم صيانة الثلاجات</h3>
+        <a href="tel:16807" class="service-btn">الخط الساخن 16807</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card">
+        <img src="https://seyanacenter.soopec.org/wp-content/uploads/2024/10/صيانة-غسالة-ملابس.png" alt="صيانة غسالات الملابس">
+        <h3>قسم صيانة غسالات الملابس</h3>
+        <a href="tel:16807" class="service-btn">الخط الساخن 16807</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card">
+        <img src="https://seyanacenter.soopec.org/wp-content/uploads/2024/10/صيانة-غسالة-اطباق.png" alt="صيانة غسالات الأطباق">
+        <h3>قسم صيانة غسالات الأطباق</h3>
+        <a href="tel:16807" class="service-btn">الخط الساخن 16807</a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card">
+        <img src="https://seyanacenter.soopec.org/wp-content/uploads/2024/10/صيانة-ديب-فريز.png" alt="صيانة الديب فريزر">
+        <h3>قسم صيانة الديب فريزر</h3>
+        <a href="tel:16807" class="service-btn">الخط الساخن 16807</a>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="service-card">
+        <img src="https://seyanacenter.soopec.org/wp-content/uploads/2024/10/صيانة-مجفف.png" alt="صيانة المجففات">
+        <h3>قسم صيانة المجففات</h3>
+        <a href="tel:16807" class="service-btn">الخط الساخن 16807</a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="service-card">
+        <img src="https://seyanacenter.soopec.org/wp-content/uploads/2024/10/صيانة-ميكروويف.png" alt="صيانة الميكروويف">
+        <h3>قسم صيانة الميكروويف</h3>
+        <a href="tel:16807" class="service-btn">الخط الساخن 16807</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="testimonials-section">
+  <div class="container">
+    <h2 class="testimonials-title">آراء العملاء عن مركز الدعم و صيانة الأجهزة المنزلية – خدمة موثوقة وسريعة</h2>
+    <div class="testimonials-grid">
+
+      <!-- Card 1 -->
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          <p>خدمة رائعة! قمت بإصلاح غسالة الملابس وكانت المشكلة معقدة، لكن الفنيين من مركز الدعم و العناية حلوها بسرعة وباحترافية. أوصي بشدة بخدماتهم.</p>
+        </div>
+        <div class="testimonial-meta">
+          <strong>أحمد</strong> / <span>القاهرة</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          <p>ميكروويفي كان به عطل غريب، وتواصلت مع مركز الدعم و العناية لصيانته. الخدمة كانت سريعة جدًا، والفني شرح المشكلة بوضوح وأصلحها في زيارته الأولى. شكرًا لفريق العمل.</p>
+        </div>
+        <div class="testimonial-meta">
+          <strong>منى</strong> / <span>المنصورة</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          <p>ثلاجتي كانت تعاني من مشاكل، وكانت الخدمة في مركز الدعم ممتازة. الفنيين كانوا محترفين وسريعين، وأنا راضية تمامًا عن الخدمة.</p>
+        </div>
+        <div class="testimonial-meta">
+          <strong>سارة</strong> / <span>الإسكندرية</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          <p>خدمة مميزة من مركز الدعم و الصيانة – تم إصلاح غسالة الأطباق بشكل فعال، والجميع كانوا ودودين ومتعاونين. تجربة رائعة.</p>
+        </div>
+        <div class="testimonial-meta">
+          <strong>علي</strong> / <span>طنطا</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <div class="container">
+
+        <div id="contact" class="contact-section">
+            <h2 class="contact-title">📱 تواصل معنا</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>الهاتف</h3>
+                    <a href="tel:+201031242450">+20 10 31242450</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>واتساب</h3>
+                    <a href="https://wa.me/message/7K7TH3BGR4F4B1" target="_blank">راسلنا على واتساب</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📘</div>
+                    <h3>فيسبوك</h3>
+                    <a href="https://www.facebook.com/profile.php?id=61581542423663&mibextid=ZbWKwL" target="_blank">تابعنا على فيسبوك</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📷</div>
+                    <h3>انستجرام</h3>
+                    <a href="https://www.instagram.com/llsynhlwkyllmtmd?igsh=MW94MXFteGF0dHJnNw==" target="_blank">تابعنا على انستجرام</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+  <!-- الموجة الزخرفية -->
+  <!-- <div class="wave-divider">
+  <svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path class="ux-shape-fill" opacity="0.15" d="M0 14C0 14 88.64 17.48 300 50C560 90 814 77 1003 40L1015 68L1018 104H0V14Z"></path>
+    <path class="ux-shape-fill" opacity="0.3" d="M0 45C0 45 271 90.13 500 77C657 68 830 30 1015 14V100H0V45Z"></path>
+    <path class="ux-shape-fill" d="M0 58C0 58 188.29 90 508 90C798 90 1002 55 1002 55V100H0V58Z"></path>
+  </svg>
+</div> -->
+
+  <div class="footer-content container">
+    <div class="footer-logo">
+      <img src="/hotline.png" alt="01031242450 Logo">
+      <p>32 عمارات الدفاع الوطني – حدائق القبة<br>بجوار سور المخابرات</p>
+      <a href="tel:+201031242450" class="phone-btn">
+        <i class="icon-phone"></i> اتصل بنا 01031242450
+      </a>
+    </div>
+
+    <div class="footer-links">
+      <h5>روابط مهمة</h5>
+      <ul>
+        <li><a href="#">من نحن</a></li>
+        <li><a href="#">تواصل معنا</a></li>
+        <li><a href="#">الشروط والأحكام</a></li>
+        <li><a href="#">صيانة ثلاجات</a></li>
+        <li><a href="#">صيانة غسالات</a></li>
+        <li><a href="#">صيانة ميكروويف</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-text">
+      <h5>اتصل بنا على 01031242450</h5>
+      <p>نحن مركز خدمة خاص متخصص في صيانة الأجهزة المنزلية باستخدام قطع غيار أصلية. لسنا تابعين لأي توكيل تجاري، وجميع الكلمات بالموقع تهدف لمساعدة العملاء في الوصول إلينا بسهولة.</p>
+    </div>
+
+    <div class="footer-cities">
+      <h5>مراكزنا متوفرة في جميع أنحاء مصر</h5>
+      <ul>
+        <li>القاهرة</li>
+        <li>الإسكندرية</li>
+        <li>الجيزة</li>
+        <li>المنصورة</li>
+        <li>بورسعيد</li>
+        <li>طنطا</li>
+        <li>السويس</li>
+        <li>الأقصر</li>
+        <li>أسوان</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- خريطة -->
+  <div class="footer-map">
+    <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12864.283469192315!2d30.697563224692942!3d30.761648641303125!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDQ1JzUzLjAiTiAzMMKwMzknNDAuNCJF!5e0!3m2!1sen!2seg!4v1696830000000"
+  width="100%" 
+  height="450" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+  </div>
+
+  <!-- الشريط السفلي -->
+  <div class="footer-bottom">
+    <p>© 2025 - 16807</p>
+    <div class="social">
+      <a href="#"><i class="icon-facebook"></i></a>
+      <a href="#"><i class="icon-instagram"></i></a>
+      <a href="#"><i class="icon-twitter"></i></a>
+      <a href="#"><i class="icon-linkedin"></i></a>
+    </div>
+    <div class="footer-policies">
+      <a href="#">شروط</a>
+      <a href="#">خصوصية</a>
+      <a href="#">ملفات تعريف الارتباط</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Action Buttons -->
+<div class="fab-container">
+  <!-- Action buttons -->
+  <div class="fab-buttons">
+    <a href="tel:+201031242450" class="fab-btn call-btn" title="Call">
+      📞
+    </a>
+    <a href="https://wa.me/201031242450" target="_blank" class="fab-btn whatsapp-btn" title="WhatsApp">
+      💬
+    </a>
+  </div>
+
+  <!-- Main toggle button -->
+  <button class="fab-main" id="fab-toggle" title="Contact Us">✚</button>
+</div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('main-menu');
+        const menuOverlay = document.getElementById('main-menu-overlay');
+
+        function openMobileMenu(e) {
+            e.preventDefault();
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        menuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-menu-nav a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Sticky Header
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#main-menu') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Contact Card Hover Animation
+        const cards = document.querySelectorAll('.contact-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) rotate(1deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotate(0)';
+            });
+        });
+
+        // Animate on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.contact-card, .main-content, .contact-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+    <script>
+  const fabToggle = document.getElementById('fab-toggle');
+  const fabContainer = document.querySelector('.fab-container');
+
+  fabToggle.addEventListener('click', () => {
+    fabContainer.classList.toggle('active');
+  });
+
+  // close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!fabContainer.contains(e.target)) {
+      fabContainer.classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>
