@@ -275,6 +275,71 @@
             color: #667eea;
         }
 
+        /* --- Center Logo in Mobile --- */
+@media (max-width: 849px) {
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Logo in center */
+  #logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Menu button on right */
+  .mobile-menu-icon {
+    order: 2;
+    margin-left: auto;
+  }
+
+  /* if you want menu button on left, use: */
+  /* .mobile-menu-icon { order: 0; margin-right: auto; } */
+
+  /* Empty placeholder to keep layout balanced */
+  .mobile-menu-placeholder {
+    width: 40px; /* same width as menu icon */
+  }
+}
+
+/* --- Bottom Nav inline --- */
+@media (max-width: 849px) {
+  .mobile-bottom-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .mobile-bottom-nav .header-button {
+    flex: 1;
+    text-align: center;
+  }
+
+  .mobile-bottom-nav .nav {
+    display: flex;
+    flex-direction: row; /* inline buttons */
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .mobile-bottom-nav li {
+    flex: 1;
+  }
+
+  .mobile-bottom-nav a.button {
+    width: 100%;
+    justify-content: center;
+  }
+  .container {
+    padding: 0px !important;
+  }   
+}
+
         /* Responsive Design */
         @media (max-width: 849px) {
             .hide-for-medium {
@@ -902,95 +967,92 @@
 <body>
     <!-- Header -->
     <header id="header" class="header">
-        <div class="header-wrapper">
-            <div class="header-main">
-                <div class="header-inner">
-                    <!-- Logo -->
-                    <div id="logo" class="flex-col logo">
-                        <a href="#" title="الوكيل المعتمد للصيانه">
-                            <img src="/logo.png" class="header_logo" alt="الوكيل المعتمد للصيانه">
-                        </a>
-                    </div>
-
-                    <!-- Mobile Menu Button -->
-                    <div class="flex-col show-for-medium flex-left">
-                        <ul class="mobile-nav nav nav-left">
-                            <li class="nav-icon">
-                                <div class="header-button">
-                                    <a href="#" class="icon primary button circle" aria-label="القائمة" id="mobile-menu-btn">
-                                        <span>☰</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Desktop Navigation -->
-                    <div class="flex-col hide-for-medium flex-left">
-                        <ul class="header-nav header-nav-main nav nav-left">
-                            <li><a href="#refrigerators" class="nav-top-link">صيانة الثلاجات</a></li>
-                            <li><a href="#microwaves" class="nav-top-link">صيانة الميكروويف</a></li>
-                            <li><a href="#freezers" class="nav-top-link">صيانة ديب فريزر</a></li>
-                            <li><a href="#dishwashers" class="nav-top-link">صيانة غسالات الأطباق</a></li>
-                            <li><a href="#washers" class="nav-top-link">صيانة غسالات الملابس</a></li>
-                            <li><a href="#dryers" class="nav-top-link">صيانة مجفف الملابس</a></li>
-                            <li><a href="#contact" class="nav-top-link">تواصل معنا</a></li>
-                            <li><a href="#about" class="nav-top-link">نبذه عنا</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Desktop Right Buttons -->
-                    <div class="flex-col hide-for-medium flex-right">
-                        <ul class="header-nav header-nav-main nav nav-right">
-                            <li class="html header-button-2">
-                                <div class="header-button">
-                                    <a href="tel:+201031242450" class="button secondary">
-                                        <span>01031242450</span>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="html header-button-1">
-                                <div class="header-button">
-                                    <a href="https://wa.me/message/7K7TH3BGR4F4B1" class="button primary">
-                                        <span>واتساب</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Mobile Right Elements -->
-                    <div class="flex-col show-for-medium flex-right">
-                        <ul class="mobile-nav nav nav-right"></ul>
-                    </div>
+    <div class="header-wrapper">
+        <div class="header-main">
+            <div class="header-inner">
+                <!-- Mobile Menu Button (Right or Left) -->
+                <div class="flex-col show-for-medium mobile-menu-icon">
+                    <ul class="mobile-nav nav">
+                        <li class="nav-icon">
+                            <div class="header-button">
+                                <a href="#" class="icon primary button circle" aria-label="القائمة" id="mobile-menu-btn">
+                                    <span>☰</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
 
-            <!-- Mobile Bottom Navigation -->
-            <div class="header-bottom wide-nav show-for-medium">
-                <div class="flex-row container">
-                    <div class="flex-col flex-grow">
-                        <ul class="nav header-bottom-nav nav-center mobile-nav">
-                            <li class="html header-button-2">
-                                <div class="header-button">
-                                    <a href="tel:+201031242450" class="button secondary">
-                                        <span>01031242450</span>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="html header-button-1">
-                                <div class="header-button">
-                                    <a href="https://wa.me/message/7K7TH3BGR4F4B1" class="button primary">
-                                        <span>واتساب</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                <!-- Logo -->
+                <div id="logo" class="flex-col logo">
+                    <a href="#" title="الوكيل المعتمد للصيانه">
+                        <img src="/logo.png" class="header_logo" alt="الوكيل المعتمد للصيانه">
+                    </a>
+                </div>
+
+                <!-- Empty Flex for balance (optional) -->
+                <div class="flex-col show-for-medium mobile-menu-placeholder"></div>
+
+                <!-- Desktop Navigation -->
+                <div class="flex-col hide-for-medium flex-left">
+                    <ul class="header-nav header-nav-main nav nav-left">
+                        <li><a href="#refrigerators" class="nav-top-link">صيانة الثلاجات</a></li>
+                        <li><a href="#microwaves" class="nav-top-link">صيانة الميكروويف</a></li>
+                        <li><a href="#freezers" class="nav-top-link">صيانة ديب فريزر</a></li>
+                        <li><a href="#dishwashers" class="nav-top-link">صيانة غسالات الأطباق</a></li>
+                        <li><a href="#washers" class="nav-top-link">صيانة غسالات الملابس</a></li>
+                        <li><a href="#dryers" class="nav-top-link">صيانة مجفف الملابس</a></li>
+                        <li><a href="#contact" class="nav-top-link">تواصل معنا</a></li>
+                        <li><a href="#about" class="nav-top-link">نبذه عنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- Desktop Right Buttons -->
+                <div class="flex-col hide-for-medium flex-right">
+                    <ul class="header-nav header-nav-main nav nav-right">
+                        <li class="html header-button-2">
+                            <div class="header-button">
+                                <a href="tel:+201031242450" class="button secondary">
+                                    <span>01031242450</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="html header-button-1">
+                            <div class="header-button">
+                                <a href="https://wa.me/message/7K7TH3BGR4F4B1" class="button primary">
+                                    <span>واتساب</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </header>
+
+        <!-- Mobile Bottom Navigation -->
+        <div class="header-bottom wide-nav show-for-medium">
+            <div class="container mobile-bottom-nav">
+                <ul class="nav header-bottom-nav mobile-nav">
+                    <li class="html header-button-2">
+                        <div class="header-button">
+                            <a href="tel:+201031242450" class="button secondary">
+                                <span>01031242450</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="html header-button-1">
+                        <div class="header-button">
+                            <a href="https://wa.me/message/7K7TH3BGR4F4B1" class="button primary">
+                                <span>واتساب</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
 
     <!-- Mobile Menu Overlay -->
     <div id="main-menu-overlay"></div>
